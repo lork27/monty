@@ -4,7 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 
-int check_num(char *token, int line);
+int check_num(char *token);
 void read_textfile(const char *filename);
 /**
  * main - check the code
@@ -64,10 +64,20 @@ void read_textfile(const char *filename)
 				free(line);
 				exit (EXIT_FAILURE);
 			}
-			if (check_num(token, line_count) == 0)
+			/*creo que voy a cambiar check_num a que solo acepte el token y cambiar
+			 * que si devuelvo 1 es que no es numero
+			 * por lo tanto puedo comprobar el resto de tokenize hasta llegar a NULL
+			 * y ahi es que llamo error*/
+			if (check_num(token) == 0)
 			{
 				/*check if atoi(token) is digit, if not keep tokenizing until isdigit or null*/
 				printf(": %d\n", atoi(token));
+			}
+			else if (check_num(token) == 1)
+			{
+				free(line);
+				fprintf(stderr, "L%d: usage: push integer\n", line_count);
+				exit (EXIT_FAILURE);
 			}
 		}
 		if (strcmp(token, "pall") == 0)
@@ -87,7 +97,7 @@ void read_textfile(const char *filename)
  *@token: the token that should contain an int
  *@line: line count to print error with in case of failure
  */
-int check_num(char *token, int line)
+int check_num(char *token)
 {
 	int i;
 	
@@ -95,10 +105,8 @@ int check_num(char *token, int line)
 	{
 		if(isdigit(token[i]) != 0)
 		{
-			printf("is a number ");
 			return(0);
 		}
 	}
-	fprintf(stderr, "L%d: usage: push integer\n", line);
-	exit (EXIT_FAILURE);
+	return (1);
 }
