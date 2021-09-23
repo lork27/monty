@@ -8,7 +8,8 @@ int check_num(char *token, int line);
 void read_textfile(const char *filename);
 /**
  * main - check the code
- *
+ * @ac: argument count
+ * @av: arguments passed
  * Return: Always 0.
  */
 int main(int ac, char **av)
@@ -22,6 +23,11 @@ int main(int ac, char **av)
     return (0);
 }
 
+/**
+ *read_textfile - parses through each line of a file looking for monty code
+ *@filename: contains monty code
+ */
+
 void read_textfile(const char *filename)
 {
 	/*this string will hold all the characters we don't want*/
@@ -32,7 +38,7 @@ void read_textfile(const char *filename)
 	int line_count = 1;
 	FILE *fp = fopen(filename, "r");
 	char *token = NULL;
-
+	/*if not a file print error*/
 	if (!fp)
 	{
 		fprintf(stderr, "Error: can't open file %s\n", filename);
@@ -76,6 +82,11 @@ void read_textfile(const char *filename)
 	fclose(fp);
 }
 
+/**
+ *check_num - function that parses through token to check if there is a digit
+ *@token: the token that should contain an int
+ *@line: line count to print error with in case of failure
+ */
 int check_num(char *token, int line)
 {
 	int i;
