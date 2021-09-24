@@ -23,13 +23,19 @@ void read_textfile(const char *filename)
 		{
 			token = strtok(NULL, delim);
 			if (token == NULL)
+			{
+				fclose(fp);
 				push_error_handler(line_count, line);
+			}
 			if (check_num(token) == 0)
 			{
 				func_selec("push")(&node, atoi(token));
 			}
 			else if (check_num(token) == 1)
+			{
+				fclose(fp);
 				push_error_handler(line_count, line);
+			}
 		}
 		else
 		{
