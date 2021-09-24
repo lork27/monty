@@ -18,13 +18,42 @@ int check_num(char *token)
 	return (1);
 }
 /**
- *error_handler - prints to stderr
+ *push_error_handler - prints to stderr for error with push
  *@line_count: count of lines
  *@line: line of file to be freed
  */
-void error_handler(int line_count, char *line)
+void push_error_handler(int line_count, char *line)
 {
 	fprintf(stderr, "L%d: usage: push integer\n", line_count);
 	free(line);
 	exit(EXIT_FAILURE);
+}
+
+/**
+ * *func_selec - selects proper function according to token
+ *@keyword: string that contains func name
+ *Return: func to be executed
+ */
+void (*func_selec(char *keyword))(stack_t **node, unsigned int line_count)
+{
+	/*fpointer shenanigans here*/
+	int i;
+
+	instruction_t fp[] = {
+		{"push", push},
+		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
+		{NULL, NULL}
+	};
+
+	for (i = 0; fp[i].opcode != NULL; i++)
+	{
+		if (strcmp(fp[i].opcode, keyword) == 0)
+			return (fp[i].f);
+	}
+	return (NULL);
 }

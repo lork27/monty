@@ -9,8 +9,8 @@ int main(int ac, char **av)
 {
 	if (ac != 2)
 	{
-		dprintf(2, "Usage: %s filename\n", av[0]);
-		exit(1);
+		fprintf(stderr, "Usage: %s filename\n", av[0]);
+		exit(EXIT_FAILURE);
 	}
 	read_textfile(av[1]);
 	return (0);

@@ -9,11 +9,12 @@ void read_textfile(const char *filename)
 	size_t line_size = 0;
 	int line_count = 1;
 	FILE *fp = fopen(filename, "r");
+	stack_t *node = NULL;
 
 	if (!fp)
 	{
 		fprintf(stderr, "Error: can't open file %s\n", filename);
-		return;
+		exit(EXIT_FAILURE);
 	}
 	while (getline(&line, &line_size, fp) != EOF)
 	{
@@ -22,15 +23,17 @@ void read_textfile(const char *filename)
 		{
 			token = strtok(NULL, delim);
 			if (token == NULL)
-				error_handler(line_count, line);
+				push_error_handler(line_count, line);
 			if (check_num(token) == 0)
-				printf(": %d\n", atoi(token));
+			{
+				func_selec("push")(&node, atoi(token));
+			}
 			else if (check_num(token) == 1)
-				error_handler(line_count, line);
+				push_error_handler(line_count, line);
 		}
-		if (strcmp(token, "pall") == 0)
+		else
 		{
-			printf("I should print the stack!\n");
+			func_selec(token)(&node, line_count);
 		}
 		line_count++;
 	}
