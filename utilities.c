@@ -55,10 +55,7 @@ void (*func_selec(char *keyword))(stack_t **node, unsigned int line_count)
 		if (strcmp(fp[i].opcode, keyword) == 0)
 			return (fp[i].f);
 	}
-	if (*node != NULL)
-		free_list(*node);
-	fprintf(stderr, "L%i: unknown instruction\n", 27);
-	exit(EXIT_FAILURE);
+	return (NULL);
 }
 
 /**
