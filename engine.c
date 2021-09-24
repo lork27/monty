@@ -12,10 +12,7 @@ void read_textfile(const char *filename)
 	stack_t *node = NULL;
 
 	if (!fp)
-	{
-		fprintf(stderr, "Error: can't open file %s\n", filename);
-		exit(EXIT_FAILURE);
-	}
+		nofile(filename);
 	while (getline(&line, &line_size, fp) != EOF)
 	{
 		token = strtok(line, delim);
@@ -46,4 +43,13 @@ void read_textfile(const char *filename)
 	free_list(node);
 	free(line);
 	fclose(fp);
+}
+/**
+ *nofile - error when no file
+ *@filename: name of file
+ */
+void nofile(char *filename)
+{
+	fprintf(stderr, "Error: can't open file %s\n", filename);
+	exit(EXIT_FAILURE);
 }

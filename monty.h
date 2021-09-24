@@ -43,6 +43,7 @@ void read_textfile(const char *filename);
 void push_error_handler(int line_count, char *line);
 void (*func_selec(char *keyword))(stack_t **node, unsigned int line_count);
 void free_list(stack_t *node);
+void nofile(char *filename);
 
 /*node manipulation funcs*/
 void push(stack_t **stack, unsigned int line_number);
