@@ -35,9 +35,7 @@ void read_textfile(const char *filename)
 			}
 		}
 		else
-		{
 			func_selec(token)(&node, line_count);
-		}
 		line_count++;
 	}
 	free_list(node);
@@ -48,7 +46,7 @@ void read_textfile(const char *filename)
  *nofile - error when no file
  *@filename: name of file
  */
-void nofile(char *filename)
+void nofile(const char *filename)
 {
 	fprintf(stderr, "Error: can't open file %s\n", filename);
 	exit(EXIT_FAILURE);
