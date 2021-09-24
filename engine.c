@@ -43,6 +43,7 @@ void read_textfile(const char *filename)
 		}
 		line_count++;
 	}
+	free_list(node);
 	free(line);
 	fclose(fp);
 }
