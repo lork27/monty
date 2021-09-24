@@ -55,5 +55,24 @@ void (*func_selec(char *keyword))(stack_t **node, unsigned int line_count)
 		if (strcmp(fp[i].opcode, keyword) == 0)
 			return (fp[i].f);
 	}
-	return (NULL);
+	if (*node != NULL)
+		free_list(*node);
+	fprintf(stderr, "L%i: unknown instruction\n", 27);
+	exit(EXIT_FAILURE);
+}
+
+/**
+ *free_list - frees up every node of type list_t type
+ *@node: pointer to the first node of list_t
+ */
+void free_list(stack_t *node)
+{
+	stack_t *temp;
+
+	while (node != NULL)
+	{
+		temp = node->next;
+		free(node);
+		node = temp;
+	}
 }
