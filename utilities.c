@@ -1,4 +1,4 @@
-#include "monty.h"
+ii#include "monty.h"
 /**
  *check_num - function that parses through token to check if there is a digit
  *@token: the token that should contain an int
@@ -10,12 +10,9 @@ int check_num(char *token)
 
 	for (i = 0; token[i] != '\0'; i++)
 	{
-		if (isdigit(token[i]) == '-')
+		if (isdigit(token[i]) != 0)
 		{
-			if (isdigit(token[i + 1]) != 0)
-				continue;
-			else
-				return (1);
+			return (0);
 		}
 	}
 	return (1);
