@@ -51,6 +51,6 @@ void read_textfile(const char *filename)
  */
 void nofile(const char *filename)
 {
-	fprintf(stderr, "Error: can't open file %s\n", filename);
+	fprintf(stderr, "Error: Can't open file %s\n", filename);
 	exit(EXIT_FAILURE);
 }
