@@ -16,7 +16,7 @@ void read_textfile(const char *filename)
 	while (getline(&line, &line_size, fp) != EOF)
 	{
 		token = strtok(line, delim);
-		if (strcmp(token, "push") == 0)
+		if (strncmp(token, "push", 4) == 0)
 		{
 			token = strtok(NULL, delim);
 			if (token == NULL)

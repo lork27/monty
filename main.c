@@ -5,6 +5,7 @@
  * @av: arguments passed
  * Return: Always 0.
  */
+
 int main(int ac, char **av)
 {
 	if (ac != 2)
