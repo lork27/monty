@@ -2,9 +2,10 @@
 /**
  *push - add node to head
  *@stack: node added
- *@line_number: num to add to node
+ *@num: num to add to node
+ *Return: node created
  */
-void push(stack_t **stack, unsigned int line_number)
+stack_t *push(stack_t **stack, int num)
 {
 	stack_t *new = NULL;
 
@@ -15,7 +16,7 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	new->n = line_number;
+	new->n = num;
 	new->prev = NULL;
 	if (*stack == NULL)
 	{
@@ -28,6 +29,7 @@ void push(stack_t **stack, unsigned int line_number)
 		(*stack)->prev = new;
 		*stack = new;
 	}
+	return (new);
 }
 /**
  *pall - prints stack

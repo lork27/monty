@@ -28,7 +28,7 @@ void read_textfile(const char *filename)
 				}
 				if (check_num(token) == 0)
 				{
-					func_selec("push")(&node, atoi(token));
+					push(&node, atoi(token));
 				}
 				else if (check_num(token) == 1)
 				{

@@ -47,7 +47,7 @@ void free_list(stack_t *node);
 void nofile(const char *filename);
 
 /*node manipulation funcs*/
-void push(stack_t **stack, unsigned int line_number);
+stack_t *push(stack_t **stack, int num);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);

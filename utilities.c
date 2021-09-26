@@ -45,7 +45,6 @@ void (*func_selec(char *keyword))(stack_t **node, unsigned int line_count)
 	int i;
 
 	instruction_t fp[] = {
-		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
