@@ -16,26 +16,29 @@ void read_textfile(const char *filename)
 	while (getline(&line, &line_size, fp) != EOF)
 	{
 		token = strtok(line, delim);
-		if (strncmp(token, "push", 4) == 0)
+		if (token[0] != '#')
 		{
-			token = strtok(NULL, delim);
-			if (token == NULL)
+			if (strncmp(token, "push", 4) == 0)
 			{
-				fclose(fp);
-				push_error_handler(line_count, line);
+				token = strtok(NULL, delim);
+				if (token == NULL)
+				{
+					fclose(fp);
+					push_error_handler(line_count, line);
+				}
+				if (check_num(token) == 0)
+				{
+					func_selec("push")(&node, atoi(token));
+				}
+				else if (check_num(token) == 1)
+				{
+					fclose(fp);
+					push_error_handler(line_count, line);
+				}
 			}
-			if (check_num(token) == 0)
-			{
-				func_selec("push")(&node, atoi(token));
-			}
-			else if (check_num(token) == 1)
-			{
-				fclose(fp);
-				push_error_handler(line_count, line);
-			}
+			else
+				func_selec(token)(&node, line_count);
 		}
-		else
-			func_selec(token)(&node, line_count);
 		line_count++;
 	}
 	free_list(node);
