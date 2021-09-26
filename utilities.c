@@ -8,14 +8,19 @@ int check_num(char *token)
 {
 	int i;
 
-	for (i = 0; token[i] != '\0'; i++)
+	for (i = 0; token[i] != '\0' && token[i] != '\n'; i++)
 	{
-		if (isdigit(token[i]) != 0)
+		if (token[i] == '-')
 		{
-			return (0);
+			if (isdigit(token[i + 1]) != 0)
+				continue;
+			else
+				return (1);
 		}
+		else if (isdigit(token[i]) == 0)
+			return (1);
 	}
-	return (1);
+	return (0);
 }
 /**
  *push_error_handler - prints to stderr for error with push
