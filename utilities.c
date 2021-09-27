@@ -51,6 +51,8 @@ void (*func_selec(char *keyword))(stack_t **node, unsigned int line_count)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
+		{"sub", sub},
+		{"div", division},
 		{NULL, NULL}
 	};
 
