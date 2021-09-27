@@ -47,3 +47,50 @@ void division(stack_t **stack, unsigned int line_number)
 		free(temp);
 	}
 }
+/**
+ *multiplication - multiplies top two elements from stack
+ *@stack: the stack of nodes
+ *@line_number: line number from which div was called
+ */
+void multiplication(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		temp = *stack;
+		*stack = temp->next;
+		(*stack)->n = temp->n * (*stack)->n;
+		(*stack)->prev = temp->prev;
+		free(temp);
+	}
+}
+/**
+ *mod - gives the rest of the division of the top two elements of stack
+ *@stack: the stack
+ *@line_number: line from which mod was called
+ */
+void mod(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		temp = *stack;
+		*stack = temp->next;
+		(*stack)->n = temp->n % (*stack)->n;
+		(*stack)->prev = temp->prev;
+		free(temp);
+	}
+}
+

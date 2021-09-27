@@ -57,6 +57,7 @@ void nop(stack_t **stack, unsigned int line_number);
 /*advance node manipulation funcs*/
 void sub(stack_t **stack, unsigned int line_number);
 void division(stack_t **stack, unsigned int line_number);
-
+void multiplication(stack_t **stack_t, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);
 
 #endif /*_GNU_SOURCE_*/
